@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+import os
 
 app = FastAPI()
 
@@ -9,3 +10,8 @@ def health():
 @app.get("/ping")
 def ping():
     return {"pong": True}
+
+@app.get("/")
+def root():
+    return {"alive": True}
+
