@@ -5,16 +5,14 @@ FROM python:3.10-slim
 WORKDIR /app
 
 # Install dependencies
-# First copy requirements.txt and install
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the app code into the container
 COPY . .
 
-# Expose the default port (not strictly required by RunPod, but good practice)
+# Expose the default port (required for RunPod to detect the service)
 EXPOSE 8000
 
-# Run the FastAPI app with uvicorn
-# Use ${PORT:-8000} so RunPod can inject its own port
-CMD ["sh", "./start.sh"]
+# Run the FastAPI app with uvicorn directly (no shell wrapper)
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "info"]
