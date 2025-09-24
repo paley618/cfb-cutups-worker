@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-import os
 
 app = FastAPI()
 
@@ -14,4 +13,3 @@ def ping():
 @app.get("/")
 def root():
     return {"alive": True}
-
