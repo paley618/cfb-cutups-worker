@@ -17,4 +17,4 @@ EXPOSE 8000
 
 # Run the FastAPI app with uvicorn
 # Use ${PORT:-8000} so RunPod can inject its own port
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "info"]
+CMD ["sh", "./start.sh"]
