@@ -1,30 +1,23 @@
+import logging
 from fastapi import FastAPI
+
+# Enable logging to Railway logs
+logging.basicConfig(level=logging.INFO)
 
 app = FastAPI()
 
 @app.get("/")
 def root():
+    logging.info("📡 Root endpoint hit")
     return {"status": "alive"}
 
 @app.get("/health")
 def health():
+    logging.info("📡 Health endpoint hit")
     return {"ok": True}
 
 @app.post("/process")
 def run_cutups(video_url: str):
-    result = "This is where cutup logic goes"
-    return {"result": result}
-
-# DEBUG: check health on internal request after startup
-if __name__ == "__main__":
-    import requests
-    import time
-
-    print("🚀 FastAPI app is starting...")
-
-    time.sleep(1)
-    try:
-        response = requests.get("http://localhost:8000/health")
-        print("✅ Internal health check response:", response.text)
-    except Exception as e:
-        print("❌ Internal health check failed:", e)
+    logging.info(f"🎥 Processing video at URL: {video_url}")
+    # Placeholder logic for now
+    return {"result": f"Processing started for {video_url}"}
