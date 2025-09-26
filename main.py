@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-from worker import process_game  # your custom logic
 
 app = FastAPI()
 
